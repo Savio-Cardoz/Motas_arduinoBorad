@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Motas_basic", "Motas_basic\Motas_basic.cproj", "{F156C1C1-BB9F-4142-81FB-A41045786927}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F156C1C1-BB9F-4142-81FB-A41045786927}.Debug|AVR.ActiveCfg = Debug|AVR
+		{F156C1C1-BB9F-4142-81FB-A41045786927}.Debug|AVR.Build.0 = Debug|AVR
+		{F156C1C1-BB9F-4142-81FB-A41045786927}.Release|AVR.ActiveCfg = Release|AVR
+		{F156C1C1-BB9F-4142-81FB-A41045786927}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,1892 @@
+
+Motas_basic.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         0000007a  00800100  00000a96  00000b2a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000a96  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000024  0080017a  0080017a  00000ba4  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000ba4  2**0
+                  CONTENTS, READONLY
+  4 .debug_aranges 000001d0  00000000  00000000  00000bd4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00001803  00000000  00000000  00000da4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000851  00000000  00000000  000025a7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000009c9  00000000  00000000  00002df8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000468  00000000  00000000  000037c4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000006d8  00000000  00000000  00003c2c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000008c6  00000000  00000000  00004304  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000180  00000000  00000000  00004bca  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 b7 04 	jmp	0x96e	; 0x96e <__vector_1>
+   8:	0c 94 27 04 	jmp	0x84e	; 0x84e <__vector_2>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 38 04 	jmp	0x870	; 0x870 <__vector_9>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 10 04 	jmp	0x820	; 0x820 <__vector_13>
+  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 48 04 	jmp	0x890	; 0x890 <__vector_16>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__vector_18>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e6 e9       	ldi	r30, 0x96	; 150
+  7c:	fa e0       	ldi	r31, 0x0A	; 10
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	aa 37       	cpi	r26, 0x7A	; 122
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	21 e0       	ldi	r18, 0x01	; 1
+  8c:	aa e7       	ldi	r26, 0x7A	; 122
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	ae 39       	cpi	r26, 0x9E	; 158
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 c2 02 	call	0x584	; 0x584 <main>
+  9e:	0c 94 49 05 	jmp	0xa92	; 0xa92 <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <USART_Init>:
+   //UBRR0L = BAUD_PRESCALE;// Load lower 8-bits into the low byte of the UBRR register
+   //UBRR0H = (BAUD_PRESCALE >> 8); 
+	 /* Load upper 8-bits into the high byte of the UBRR register
+    Default frame format is 8 data bits, no parity, 1 stop bit
+  to change use UCSRC, see AVR datasheet*/ 
+	UBRR0 = 12;
+  a6:	8c e0       	ldi	r24, 0x0C	; 12
+  a8:	90 e0       	ldi	r25, 0x00	; 0
+  aa:	90 93 c5 00 	sts	0x00C5, r25
+  ae:	80 93 c4 00 	sts	0x00C4, r24
+	UCSR0A |= (1 << U2X0);
+  b2:	e0 ec       	ldi	r30, 0xC0	; 192
+  b4:	f0 e0       	ldi	r31, 0x00	; 0
+  b6:	80 81       	ld	r24, Z
+  b8:	82 60       	ori	r24, 0x02	; 2
+  ba:	80 83       	st	Z, r24
+  // Enable receiver and transmitter and receive complete interrupt 
+  UCSR0B = ((1<<TXEN0)|(1<<RXEN0) | (1<<RXCIE0));
+  bc:	88 e9       	ldi	r24, 0x98	; 152
+  be:	80 93 c1 00 	sts	0x00C1, r24
+  c2:	08 95       	ret
+
+000000c4 <USART_SendByte>:
+}
+
+
+void USART_SendByte(uint8_t u8Data)
+{
+  while((UCSR0A &(1<<UDRE0)) == 0);
+  c4:	e0 ec       	ldi	r30, 0xC0	; 192
+  c6:	f0 e0       	ldi	r31, 0x00	; 0
+  c8:	90 81       	ld	r25, Z
+  ca:	95 ff       	sbrs	r25, 5
+  cc:	fd cf       	rjmp	.-6      	; 0xc8 <USART_SendByte+0x4>
+  UDR0 = u8Data;
+  ce:	80 93 c6 00 	sts	0x00C6, r24
+  d2:	08 95       	ret
+
+000000d4 <SendDebug>:
+* @author Faisal Khan
+* @param none
+* @date 29/05/2017
+*/
+void SendDebug(char * StringPtr)
+{
+  d4:	cf 93       	push	r28
+  d6:	df 93       	push	r29
+  d8:	ec 01       	movw	r28, r24
+	while(*StringPtr != 0x00)
+  da:	88 81       	ld	r24, Y
+  dc:	88 23       	and	r24, r24
+  de:	31 f0       	breq	.+12     	; 0xec <SendDebug+0x18>
+  e0:	21 96       	adiw	r28, 0x01	; 1
+	{
+		USART_SendByte(*StringPtr);
+  e2:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+* @param none
+* @date 29/05/2017
+*/
+void SendDebug(char * StringPtr)
+{
+	while(*StringPtr != 0x00)
+  e6:	89 91       	ld	r24, Y+
+  e8:	81 11       	cpse	r24, r1
+  ea:	fb cf       	rjmp	.-10     	; 0xe2 <SendDebug+0xe>
+	{
+		USART_SendByte(*StringPtr);
+		StringPtr++;
+	}
+}
+  ec:	df 91       	pop	r29
+  ee:	cf 91       	pop	r28
+  f0:	08 95       	ret
+
+000000f2 <USART_Transmit_dec>:
+  while(!(UCSR0A & (1<<RXC0)));
+  return UDR0;
+}
+
+void USART_Transmit_dec(unsigned int int_data)
+{
+  f2:	0f 93       	push	r16
+  f4:	1f 93       	push	r17
+  f6:	cf 93       	push	r28
+  f8:	df 93       	push	r29
+	unsigned int temp1, temp2, dec_adc_value = 0;
+	
+	temp1 = int_data % 4096;
+  fa:	ac 01       	movw	r20, r24
+  fc:	5f 70       	andi	r21, 0x0F	; 15
+	temp2 = int_data / 4096;
+	dec_adc_value = dec_adc_value + (temp2 * 4096);
+  fe:	20 e0       	ldi	r18, 0x00	; 0
+ 100:	30 e0       	ldi	r19, 0x00	; 0
+ 102:	39 2f       	mov	r19, r25
+ 104:	30 7f       	andi	r19, 0xF0	; 240
+	temp2 = temp1;
+	temp1 = temp1 % 256;
+	temp2 = temp2 / 256;
+	dec_adc_value = dec_adc_value + (temp2 * 256);
+	temp2 = temp1;
+	temp1 = temp1 % 16;
+ 106:	ec 01       	movw	r28, r24
+ 108:	cf 70       	andi	r28, 0x0F	; 15
+ 10a:	dd 27       	eor	r29, r29
+	temp2 = int_data / 4096;
+	dec_adc_value = dec_adc_value + (temp2 * 4096);
+	temp2 = temp1;
+	temp1 = temp1 % 256;
+	temp2 = temp2 / 256;
+	dec_adc_value = dec_adc_value + (temp2 * 256);
+ 10c:	c2 0f       	add	r28, r18
+ 10e:	d3 1f       	adc	r29, r19
+ 110:	20 e0       	ldi	r18, 0x00	; 0
+ 112:	30 e0       	ldi	r19, 0x00	; 0
+ 114:	35 2f       	mov	r19, r21
+	temp2 = temp1;
+	temp1 = temp1 % 16;
+	temp2 = temp2 / 16;
+	dec_adc_value = (dec_adc_value + (temp2 * 16) + temp1);
+ 116:	2c 0f       	add	r18, r28
+ 118:	3d 1f       	adc	r19, r29
+ 11a:	80 7f       	andi	r24, 0xF0	; 240
+ 11c:	99 27       	eor	r25, r25
+ 11e:	e9 01       	movw	r28, r18
+ 120:	c8 0f       	add	r28, r24
+ 122:	d9 1f       	adc	r29, r25
+	temp1 = dec_adc_value;
+	USART_SendByte((dec_adc_value / 10000) | 0x30);
+ 124:	9e 01       	movw	r18, r28
+ 126:	32 95       	swap	r19
+ 128:	22 95       	swap	r18
+ 12a:	2f 70       	andi	r18, 0x0F	; 15
+ 12c:	23 27       	eor	r18, r19
+ 12e:	3f 70       	andi	r19, 0x0F	; 15
+ 130:	23 27       	eor	r18, r19
+ 132:	a7 e4       	ldi	r26, 0x47	; 71
+ 134:	b3 e0       	ldi	r27, 0x03	; 3
+ 136:	0e 94 26 05 	call	0xa4c	; 0xa4c <__umulhisi3>
+ 13a:	8c 01       	movw	r16, r24
+ 13c:	16 95       	lsr	r17
+ 13e:	07 95       	ror	r16
+ 140:	16 95       	lsr	r17
+ 142:	07 95       	ror	r16
+ 144:	16 95       	lsr	r17
+ 146:	07 95       	ror	r16
+ 148:	80 2f       	mov	r24, r16
+ 14a:	80 63       	ori	r24, 0x30	; 48
+ 14c:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+	dec_adc_value = temp1 % 10000;
+ 150:	20 e1       	ldi	r18, 0x10	; 16
+ 152:	37 e2       	ldi	r19, 0x27	; 39
+ 154:	02 9f       	mul	r16, r18
+ 156:	c0 01       	movw	r24, r0
+ 158:	03 9f       	mul	r16, r19
+ 15a:	90 0d       	add	r25, r0
+ 15c:	12 9f       	mul	r17, r18
+ 15e:	90 0d       	add	r25, r0
+ 160:	11 24       	eor	r1, r1
+ 162:	9e 01       	movw	r18, r28
+ 164:	28 1b       	sub	r18, r24
+ 166:	39 0b       	sbc	r19, r25
+	USART_SendByte((dec_adc_value / 1000) | 0x30);
+ 168:	36 95       	lsr	r19
+ 16a:	27 95       	ror	r18
+ 16c:	36 95       	lsr	r19
+ 16e:	27 95       	ror	r18
+ 170:	36 95       	lsr	r19
+ 172:	27 95       	ror	r18
+ 174:	a5 ec       	ldi	r26, 0xC5	; 197
+ 176:	b0 e2       	ldi	r27, 0x20	; 32
+ 178:	0e 94 26 05 	call	0xa4c	; 0xa4c <__umulhisi3>
+ 17c:	92 95       	swap	r25
+ 17e:	82 95       	swap	r24
+ 180:	8f 70       	andi	r24, 0x0F	; 15
+ 182:	89 27       	eor	r24, r25
+ 184:	9f 70       	andi	r25, 0x0F	; 15
+ 186:	89 27       	eor	r24, r25
+ 188:	80 63       	ori	r24, 0x30	; 48
+ 18a:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+	dec_adc_value = temp1 % 1000;
+ 18e:	9e 01       	movw	r18, r28
+ 190:	36 95       	lsr	r19
+ 192:	27 95       	ror	r18
+ 194:	36 95       	lsr	r19
+ 196:	27 95       	ror	r18
+ 198:	36 95       	lsr	r19
+ 19a:	27 95       	ror	r18
+ 19c:	a5 ec       	ldi	r26, 0xC5	; 197
+ 19e:	b0 e2       	ldi	r27, 0x20	; 32
+ 1a0:	0e 94 26 05 	call	0xa4c	; 0xa4c <__umulhisi3>
+ 1a4:	92 95       	swap	r25
+ 1a6:	82 95       	swap	r24
+ 1a8:	8f 70       	andi	r24, 0x0F	; 15
+ 1aa:	89 27       	eor	r24, r25
+ 1ac:	9f 70       	andi	r25, 0x0F	; 15
+ 1ae:	89 27       	eor	r24, r25
+ 1b0:	48 ee       	ldi	r20, 0xE8	; 232
+ 1b2:	53 e0       	ldi	r21, 0x03	; 3
+ 1b4:	84 9f       	mul	r24, r20
+ 1b6:	90 01       	movw	r18, r0
+ 1b8:	85 9f       	mul	r24, r21
+ 1ba:	30 0d       	add	r19, r0
+ 1bc:	94 9f       	mul	r25, r20
+ 1be:	30 0d       	add	r19, r0
+ 1c0:	11 24       	eor	r1, r1
+ 1c2:	ce 01       	movw	r24, r28
+ 1c4:	82 1b       	sub	r24, r18
+ 1c6:	93 0b       	sbc	r25, r19
+ 1c8:	9c 01       	movw	r18, r24
+	USART_SendByte((dec_adc_value /100) | 0x30);
+ 1ca:	36 95       	lsr	r19
+ 1cc:	27 95       	ror	r18
+ 1ce:	36 95       	lsr	r19
+ 1d0:	27 95       	ror	r18
+ 1d2:	ab e7       	ldi	r26, 0x7B	; 123
+ 1d4:	b4 e1       	ldi	r27, 0x14	; 20
+ 1d6:	0e 94 26 05 	call	0xa4c	; 0xa4c <__umulhisi3>
+ 1da:	96 95       	lsr	r25
+ 1dc:	87 95       	ror	r24
+ 1de:	80 63       	ori	r24, 0x30	; 48
+ 1e0:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+	dec_adc_value = temp1 % 100;
+ 1e4:	9e 01       	movw	r18, r28
+ 1e6:	36 95       	lsr	r19
+ 1e8:	27 95       	ror	r18
+ 1ea:	36 95       	lsr	r19
+ 1ec:	27 95       	ror	r18
+ 1ee:	ab e7       	ldi	r26, 0x7B	; 123
+ 1f0:	b4 e1       	ldi	r27, 0x14	; 20
+ 1f2:	0e 94 26 05 	call	0xa4c	; 0xa4c <__umulhisi3>
+ 1f6:	96 95       	lsr	r25
+ 1f8:	87 95       	ror	r24
+ 1fa:	44 e6       	ldi	r20, 0x64	; 100
+ 1fc:	48 9f       	mul	r20, r24
+ 1fe:	90 01       	movw	r18, r0
+ 200:	49 9f       	mul	r20, r25
+ 202:	30 0d       	add	r19, r0
+ 204:	11 24       	eor	r1, r1
+ 206:	ce 01       	movw	r24, r28
+ 208:	82 1b       	sub	r24, r18
+ 20a:	93 0b       	sbc	r25, r19
+ 20c:	9c 01       	movw	r18, r24
+	USART_SendByte((dec_adc_value / 10) | 0x30);
+ 20e:	ad ec       	ldi	r26, 0xCD	; 205
+ 210:	bc ec       	ldi	r27, 0xCC	; 204
+ 212:	0e 94 26 05 	call	0xa4c	; 0xa4c <__umulhisi3>
+ 216:	96 95       	lsr	r25
+ 218:	87 95       	ror	r24
+ 21a:	96 95       	lsr	r25
+ 21c:	87 95       	ror	r24
+ 21e:	96 95       	lsr	r25
+ 220:	87 95       	ror	r24
+ 222:	80 63       	ori	r24, 0x30	; 48
+ 224:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+	dec_adc_value = temp1 % 10;
+ 228:	9e 01       	movw	r18, r28
+ 22a:	ad ec       	ldi	r26, 0xCD	; 205
+ 22c:	bc ec       	ldi	r27, 0xCC	; 204
+ 22e:	0e 94 26 05 	call	0xa4c	; 0xa4c <__umulhisi3>
+ 232:	96 95       	lsr	r25
+ 234:	87 95       	ror	r24
+ 236:	96 95       	lsr	r25
+ 238:	87 95       	ror	r24
+ 23a:	96 95       	lsr	r25
+ 23c:	87 95       	ror	r24
+ 23e:	9c 01       	movw	r18, r24
+ 240:	22 0f       	add	r18, r18
+ 242:	33 1f       	adc	r19, r19
+ 244:	88 0f       	add	r24, r24
+ 246:	99 1f       	adc	r25, r25
+ 248:	88 0f       	add	r24, r24
+ 24a:	99 1f       	adc	r25, r25
+ 24c:	88 0f       	add	r24, r24
+ 24e:	99 1f       	adc	r25, r25
+ 250:	82 0f       	add	r24, r18
+ 252:	93 1f       	adc	r25, r19
+ 254:	9e 01       	movw	r18, r28
+ 256:	28 1b       	sub	r18, r24
+ 258:	39 0b       	sbc	r19, r25
+ 25a:	c9 01       	movw	r24, r18
+	USART_SendByte(dec_adc_value | 0x30);
+ 25c:	80 63       	ori	r24, 0x30	; 48
+ 25e:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+}
+ 262:	df 91       	pop	r29
+ 264:	cf 91       	pop	r28
+ 266:	1f 91       	pop	r17
+ 268:	0f 91       	pop	r16
+ 26a:	08 95       	ret
+
+0000026c <Ring_Add>:
+
+int Ring_Add(char c) {
+ 26c:	48 2f       	mov	r20, r24
+    ring_pos_t next_head = (ring_head + 1) % RING_SIZE;
+ 26e:	20 91 88 01 	lds	r18, 0x0188
+ 272:	30 e0       	ldi	r19, 0x00	; 0
+ 274:	c9 01       	movw	r24, r18
+ 276:	01 96       	adiw	r24, 0x01	; 1
+ 278:	6c e0       	ldi	r22, 0x0C	; 12
+ 27a:	70 e0       	ldi	r23, 0x00	; 0
+ 27c:	0e 94 12 05 	call	0xa24	; 0xa24 <__divmodhi4>
+    if (next_head != ring_tail) {
+ 280:	90 91 89 01 	lds	r25, 0x0189
+ 284:	98 17       	cp	r25, r24
+ 286:	59 f0       	breq	.+22     	; 0x29e <Ring_Add+0x32>
+        /* there is room */
+        ring_data[ring_head] = c;
+ 288:	e0 91 88 01 	lds	r30, 0x0188
+ 28c:	f0 e0       	ldi	r31, 0x00	; 0
+ 28e:	e6 57       	subi	r30, 0x76	; 118
+ 290:	fe 4f       	sbci	r31, 0xFE	; 254
+ 292:	40 83       	st	Z, r20
+        ring_head = next_head;
+ 294:	80 93 88 01 	sts	0x0188, r24
+        return 0;
+ 298:	80 e0       	ldi	r24, 0x00	; 0
+ 29a:	90 e0       	ldi	r25, 0x00	; 0
+ 29c:	08 95       	ret
+    } else {
+        /* no room left in the buffer */
+        return -1;
+ 29e:	8f ef       	ldi	r24, 0xFF	; 255
+ 2a0:	9f ef       	ldi	r25, 0xFF	; 255
+    }
+}
+ 2a2:	08 95       	ret
+
+000002a4 <__vector_18>:
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include "Atmega_Uart.h"
+
+ISR(USART_RX_vect)		// USART interrupt service routine.
+{
+ 2a4:	1f 92       	push	r1
+ 2a6:	0f 92       	push	r0
+ 2a8:	0f b6       	in	r0, 0x3f	; 63
+ 2aa:	0f 92       	push	r0
+ 2ac:	11 24       	eor	r1, r1
+ 2ae:	2f 93       	push	r18
+ 2b0:	3f 93       	push	r19
+ 2b2:	4f 93       	push	r20
+ 2b4:	5f 93       	push	r21
+ 2b6:	6f 93       	push	r22
+ 2b8:	7f 93       	push	r23
+ 2ba:	8f 93       	push	r24
+ 2bc:	9f 93       	push	r25
+ 2be:	af 93       	push	r26
+ 2c0:	bf 93       	push	r27
+ 2c2:	ef 93       	push	r30
+ 2c4:	ff 93       	push	r31
+	uint8_t err;
+	err = Ring_Add(UDR0);
+ 2c6:	80 91 c6 00 	lds	r24, 0x00C6
+ 2ca:	0e 94 36 01 	call	0x26c	; 0x26c <Ring_Add>
+
+	if (err == -1)
+	{
+		/* Error Handling code here. We may need to think if we need error handling for this */
+	}
+}
+ 2ce:	ff 91       	pop	r31
+ 2d0:	ef 91       	pop	r30
+ 2d2:	bf 91       	pop	r27
+ 2d4:	af 91       	pop	r26
+ 2d6:	9f 91       	pop	r25
+ 2d8:	8f 91       	pop	r24
+ 2da:	7f 91       	pop	r23
+ 2dc:	6f 91       	pop	r22
+ 2de:	5f 91       	pop	r21
+ 2e0:	4f 91       	pop	r20
+ 2e2:	3f 91       	pop	r19
+ 2e4:	2f 91       	pop	r18
+ 2e6:	0f 90       	pop	r0
+ 2e8:	0f be       	out	0x3f, r0	; 63
+ 2ea:	0f 90       	pop	r0
+ 2ec:	1f 90       	pop	r1
+ 2ee:	18 95       	reti
+
+000002f0 <Ring_Remove>:
+        return -1;
+    }
+}
+
+int Ring_Remove(void) {
+    if (ring_head != ring_tail) {
+ 2f0:	90 91 88 01 	lds	r25, 0x0188
+ 2f4:	80 91 89 01 	lds	r24, 0x0189
+ 2f8:	98 17       	cp	r25, r24
+ 2fa:	99 f0       	breq	.+38     	; 0x322 <Ring_Remove+0x32>
+        int c = ring_data[ring_tail];
+ 2fc:	e0 91 89 01 	lds	r30, 0x0189
+ 300:	f0 e0       	ldi	r31, 0x00	; 0
+ 302:	e6 57       	subi	r30, 0x76	; 118
+ 304:	fe 4f       	sbci	r31, 0xFE	; 254
+ 306:	20 81       	ld	r18, Z
+        ring_tail = (ring_tail + 1) % RING_SIZE;
+ 308:	80 91 89 01 	lds	r24, 0x0189
+ 30c:	90 e0       	ldi	r25, 0x00	; 0
+ 30e:	01 96       	adiw	r24, 0x01	; 1
+ 310:	6c e0       	ldi	r22, 0x0C	; 12
+ 312:	70 e0       	ldi	r23, 0x00	; 0
+ 314:	0e 94 12 05 	call	0xa24	; 0xa24 <__divmodhi4>
+ 318:	80 93 89 01 	sts	0x0189, r24
+        return c;
+ 31c:	82 2f       	mov	r24, r18
+ 31e:	90 e0       	ldi	r25, 0x00	; 0
+ 320:	08 95       	ret
+    } else {
+        return -1;
+ 322:	8f ef       	ldi	r24, 0xFF	; 255
+ 324:	9f ef       	ldi	r25, 0xFF	; 255
+    }
+}
+ 326:	08 95       	ret
+
+00000328 <Is_Buffer_Empty>:
+
+uint8_t Is_Buffer_Empty()
+{
+	if(ring_head == ring_tail)
+ 328:	20 91 88 01 	lds	r18, 0x0188
+ 32c:	90 91 89 01 	lds	r25, 0x0189
+ 330:	81 e0       	ldi	r24, 0x01	; 1
+ 332:	29 13       	cpse	r18, r25
+ 334:	01 c0       	rjmp	.+2      	; 0x338 <Is_Buffer_Empty+0x10>
+ 336:	80 e0       	ldi	r24, 0x00	; 0
+		return BUFFER_EMPTY;	
+	else return BUFFER_NOT_EMPTY;
+}
+ 338:	08 95       	ret
+
+0000033a <flush_buffer>:
+
+void flush_buffer()
+{
+	ring_head = ring_tail = 0;
+ 33a:	10 92 89 01 	sts	0x0189, r1
+ 33e:	10 92 88 01 	sts	0x0188, r1
+ 342:	08 95       	ret
+
+00000344 <DebugLedInit>:
+#include <avr/io.h>
+#include "debug_func.h"
+
+void DebugLedInit()
+{
+	RED_LED_DIR_REG |= (1 << RED_LED);
+ 344:	38 9a       	sbi	0x07, 0	; 7
+	YELLOW_LED_DIR_REG |= (1 << YELLOW_LED);
+ 346:	39 9a       	sbi	0x07, 1	; 7
+	
+	RED_LED_PORT &= ~(1 << RED_LED);
+ 348:	40 98       	cbi	0x08, 0	; 8
+	YELLOW_LED_PORT &= ~(1 << YELLOW_LED);
+ 34a:	41 98       	cbi	0x08, 1	; 8
+	
+	ARDUINO_LED_DIR_REG |= (1 << ARDUINO_LED_PIN);
+ 34c:	25 9a       	sbi	0x04, 5	; 4
+	ARDUINO_LED_PORT &= ~(1 << ARDUINO_LED_PIN);
+ 34e:	2d 98       	cbi	0x05, 5	; 5
+ 350:	08 95       	ret
+
+00000352 <DebugLedTransmit>:
+							LED_YELLOW
+							LED_ORANGE
+*/
+void DebugLedTransmit(debug_led_state_t led_state, debug_led_colour_t led_colour)
+{
+	if(led_state == LED_ON)
+ 352:	81 30       	cpi	r24, 0x01	; 1
+ 354:	a1 f4       	brne	.+40     	; 0x37e <DebugLedTransmit+0x2c>
+	{
+		switch(led_colour)
+ 356:	62 30       	cpi	r22, 0x02	; 2
+ 358:	49 f0       	breq	.+18     	; 0x36c <DebugLedTransmit+0x1a>
+ 35a:	18 f4       	brcc	.+6      	; 0x362 <DebugLedTransmit+0x10>
+ 35c:	61 30       	cpi	r22, 0x01	; 1
+ 35e:	41 f0       	breq	.+16     	; 0x370 <DebugLedTransmit+0x1e>
+ 360:	08 95       	ret
+ 362:	63 30       	cpi	r22, 0x03	; 3
+ 364:	39 f0       	breq	.+14     	; 0x374 <DebugLedTransmit+0x22>
+ 366:	64 30       	cpi	r22, 0x04	; 4
+ 368:	41 f0       	breq	.+16     	; 0x37a <DebugLedTransmit+0x28>
+ 36a:	08 95       	ret
+		{
+			case LED_RED:
+				RED_LED_PORT |= (1 << RED_LED);
+ 36c:	40 9a       	sbi	0x08, 0	; 8
+				break;
+ 36e:	08 95       	ret
+				
+			case LED_YELLOW:
+				YELLOW_LED_PORT |= (1 << YELLOW_LED);
+ 370:	41 9a       	sbi	0x08, 1	; 8
+				break;
+ 372:	08 95       	ret
+				
+			case LED_ORANGE:
+				RED_LED_PORT |= (1 << RED_LED);
+ 374:	40 9a       	sbi	0x08, 0	; 8
+				YELLOW_LED_PORT |= (1 << YELLOW_LED);
+ 376:	41 9a       	sbi	0x08, 1	; 8
+				break;
+ 378:	08 95       	ret
+				
+			case ARDUINO_LED:
+				ARDUINO_LED_PORT |= (1 << ARDUINO_LED_PIN);
+ 37a:	2d 9a       	sbi	0x05, 5	; 5
+				break;
+ 37c:	08 95       	ret
+		} 
+	}
+	else if(led_state == LED_OFF)
+ 37e:	81 11       	cpse	r24, r1
+ 380:	13 c0       	rjmp	.+38     	; 0x3a8 <DebugLedTransmit+0x56>
+	{
+		switch(led_colour)
+ 382:	62 30       	cpi	r22, 0x02	; 2
+ 384:	49 f0       	breq	.+18     	; 0x398 <DebugLedTransmit+0x46>
+ 386:	18 f4       	brcc	.+6      	; 0x38e <DebugLedTransmit+0x3c>
+ 388:	61 30       	cpi	r22, 0x01	; 1
+ 38a:	41 f0       	breq	.+16     	; 0x39c <DebugLedTransmit+0x4a>
+ 38c:	08 95       	ret
+ 38e:	63 30       	cpi	r22, 0x03	; 3
+ 390:	39 f0       	breq	.+14     	; 0x3a0 <DebugLedTransmit+0x4e>
+ 392:	64 30       	cpi	r22, 0x04	; 4
+ 394:	41 f0       	breq	.+16     	; 0x3a6 <DebugLedTransmit+0x54>
+ 396:	08 95       	ret
+		{
+			case LED_RED:
+				RED_LED_PORT &= ~(1 << RED_LED);
+ 398:	40 98       	cbi	0x08, 0	; 8
+				break;
+ 39a:	08 95       	ret
+		
+			case LED_YELLOW:
+				YELLOW_LED_PORT &= ~(1 << YELLOW_LED);
+ 39c:	41 98       	cbi	0x08, 1	; 8
+				break;
+ 39e:	08 95       	ret
+		
+			case LED_ORANGE:
+				RED_LED_PORT &= ~(1 << RED_LED);
+ 3a0:	40 98       	cbi	0x08, 0	; 8
+				YELLOW_LED_PORT &= ~(1 << YELLOW_LED);
+ 3a2:	41 98       	cbi	0x08, 1	; 8
+				break;
+ 3a4:	08 95       	ret
+			
+			case ARDUINO_LED:
+				ARDUINO_LED_PORT &= ~(1 << ARDUINO_LED_PIN);
+ 3a6:	2d 98       	cbi	0x05, 5	; 5
+ 3a8:	08 95       	ret
+
+000003aa <Dfplayer_Send>:
+		//command.tail = Ring_Remove();
+	}
+}
+
+void Dfplayer_Send(command_t* strct_ptr)
+{
+ 3aa:	cf 93       	push	r28
+ 3ac:	df 93       	push	r29
+ 3ae:	ec 01       	movw	r28, r24
+	USART_SendByte(strct_ptr->header);
+ 3b0:	88 81       	ld	r24, Y
+ 3b2:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+	USART_SendByte(strct_ptr->version);
+ 3b6:	89 81       	ldd	r24, Y+1	; 0x01
+ 3b8:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+	USART_SendByte(strct_ptr->lenght);
+ 3bc:	8a 81       	ldd	r24, Y+2	; 0x02
+ 3be:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+	USART_SendByte(strct_ptr->type);
+ 3c2:	8b 81       	ldd	r24, Y+3	; 0x03
+ 3c4:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+	USART_SendByte(strct_ptr->feedback);
+ 3c8:	8c 81       	ldd	r24, Y+4	; 0x04
+ 3ca:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+	USART_SendByte(strct_ptr->parah);
+ 3ce:	8d 81       	ldd	r24, Y+5	; 0x05
+ 3d0:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+	USART_SendByte(strct_ptr->paral);
+ 3d4:	8e 81       	ldd	r24, Y+6	; 0x06
+ 3d6:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+	USART_SendByte(strct_ptr->tail);
+ 3da:	8f 81       	ldd	r24, Y+7	; 0x07
+ 3dc:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+}
+ 3e0:	df 91       	pop	r29
+ 3e2:	cf 91       	pop	r28
+ 3e4:	08 95       	ret
+
+000003e6 <Dfplayer_Cmd>:
+	argument 1: Type of command. Refer Dfplayer.h for command name definitions
+	argument 2: Parameter to the command         
+	                                                            
+************************************************************************/
+void Dfplayer_Cmd(uint8_t cmd, uint16_t parameter)
+{
+ 3e6:	0f 93       	push	r16
+ 3e8:	1f 93       	push	r17
+ 3ea:	cf 93       	push	r28
+ 3ec:	df 93       	push	r29
+	uint8_t cmd_lenght = 0x06;			// Currently all commands that'll be used have a lenght of 6. So this is fixed
+	uint8_t tempholder = 0;
+
+	/*	Create the CMD string	*/
+	command.header = CMD_STRT_BYTE;
+ 3ee:	9e e7       	ldi	r25, 0x7E	; 126
+ 3f0:	90 93 96 01 	sts	0x0196, r25
+	command.version = CMD_VER;
+ 3f4:	9f ef       	ldi	r25, 0xFF	; 255
+ 3f6:	90 93 97 01 	sts	0x0197, r25
+	command.lenght = cmd_lenght;
+ 3fa:	96 e0       	ldi	r25, 0x06	; 6
+ 3fc:	90 93 98 01 	sts	0x0198, r25
+	command.type = cmd;
+ 400:	80 93 99 01 	sts	0x0199, r24
+	command.feedback = CMD_RECV_NFB;
+ 404:	10 92 9a 01 	sts	0x019A, r1
+	command.parah = parameter / 256;
+ 408:	0b e9       	ldi	r16, 0x9B	; 155
+ 40a:	11 e0       	ldi	r17, 0x01	; 1
+ 40c:	f8 01       	movw	r30, r16
+ 40e:	70 83       	st	Z, r23
+	command.paral = parameter % 256;
+ 410:	cc e9       	ldi	r28, 0x9C	; 156
+ 412:	d1 e0       	ldi	r29, 0x01	; 1
+ 414:	68 83       	st	Y, r22
+	command.tail = CMD_END_BYTE;
+ 416:	8f ee       	ldi	r24, 0xEF	; 239
+ 418:	80 93 9d 01 	sts	0x019D, r24
+	
+	flush_buffer();
+ 41c:	0e 94 9d 01 	call	0x33a	; 0x33a <flush_buffer>
+	Dfplayer_Send(&command);
+ 420:	86 e9       	ldi	r24, 0x96	; 150
+ 422:	91 e0       	ldi	r25, 0x01	; 1
+ 424:	0e 94 d5 01 	call	0x3aa	; 0x3aa <Dfplayer_Send>
+
+	command.parah = 0;
+ 428:	f8 01       	movw	r30, r16
+ 42a:	10 82       	st	Z, r1
+	command.paral = 0;
+ 42c:	18 82       	st	Y, r1
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 42e:	83 ed       	ldi	r24, 0xD3	; 211
+ 430:	90 e3       	ldi	r25, 0x30	; 48
+ 432:	01 97       	sbiw	r24, 0x01	; 1
+ 434:	f1 f7       	brne	.-4      	; 0x432 <Dfplayer_Cmd+0x4c>
+ 436:	00 c0       	rjmp	.+0      	; 0x438 <Dfplayer_Cmd+0x52>
+ 438:	00 00       	nop
+/*************************************************************************
+*  If Commands are query based, a immediate response will be received
+*************************************************************************/
+	_delay_ms(50);
+	if(Is_Buffer_Empty() == BUFFER_NOT_EMPTY)
+ 43a:	0e 94 94 01 	call	0x328	; 0x328 <Is_Buffer_Empty>
+ 43e:	81 30       	cpi	r24, 0x01	; 1
+ 440:	e1 f4       	brne	.+56     	; 0x47a <Dfplayer_Cmd+0x94>
+	{
+		do{
+			tempholder = Ring_Remove();
+ 442:	0e 94 78 01 	call	0x2f0	; 0x2f0 <Ring_Remove>
+		}while(tempholder != CMD_STRT_BYTE);
+ 446:	8e 37       	cpi	r24, 0x7E	; 126
+ 448:	e1 f7       	brne	.-8      	; 0x442 <Dfplayer_Cmd+0x5c>
+		command.version = Ring_Remove();				// Remove the VER byte from the buffer
+ 44a:	0e 94 78 01 	call	0x2f0	; 0x2f0 <Ring_Remove>
+ 44e:	80 93 97 01 	sts	0x0197, r24
+		command.lenght = Ring_Remove();				// Remove the CMD byte from the buffer
+ 452:	0e 94 78 01 	call	0x2f0	; 0x2f0 <Ring_Remove>
+ 456:	80 93 98 01 	sts	0x0198, r24
+		command.type = Ring_Remove();
+ 45a:	0e 94 78 01 	call	0x2f0	; 0x2f0 <Ring_Remove>
+ 45e:	80 93 99 01 	sts	0x0199, r24
+		command.feedback = Ring_Remove();
+ 462:	0e 94 78 01 	call	0x2f0	; 0x2f0 <Ring_Remove>
+ 466:	80 93 9a 01 	sts	0x019A, r24
+		command.parah = Ring_Remove();
+ 46a:	0e 94 78 01 	call	0x2f0	; 0x2f0 <Ring_Remove>
+ 46e:	80 93 9b 01 	sts	0x019B, r24
+		command.paral = Ring_Remove();
+ 472:	0e 94 78 01 	call	0x2f0	; 0x2f0 <Ring_Remove>
+ 476:	80 93 9c 01 	sts	0x019C, r24
+		//command.tail = Ring_Remove();
+	}
+}
+ 47a:	df 91       	pop	r29
+ 47c:	cf 91       	pop	r28
+ 47e:	1f 91       	pop	r17
+ 480:	0f 91       	pop	r16
+ 482:	08 95       	ret
+
+00000484 <Dfplayer_Query_Files>:
+/*	Query the DFplayer for the number of mp3 files on the microSD card.
+	Parameters: None
+	Returns:
+*/	
+uint16_t Dfplayer_Query_Files()
+{
+ 484:	cf 93       	push	r28
+ 486:	df 93       	push	r29
+	uint8_t tempholder = 0;
+	uint16_t num_of_files = 0;
+	
+	command.header = CMD_STRT_BYTE;
+ 488:	8e e7       	ldi	r24, 0x7E	; 126
+ 48a:	80 93 96 01 	sts	0x0196, r24
+	command.version = CMD_VER;
+ 48e:	8f ef       	ldi	r24, 0xFF	; 255
+ 490:	80 93 97 01 	sts	0x0197, r24
+	command.lenght = 0x06;
+ 494:	86 e0       	ldi	r24, 0x06	; 6
+ 496:	80 93 98 01 	sts	0x0198, r24
+	command.type = CMD_TF_FILES;
+ 49a:	88 e4       	ldi	r24, 0x48	; 72
+ 49c:	80 93 99 01 	sts	0x0199, r24
+	command.feedback = CMD_RECV_NFB;
+ 4a0:	10 92 9a 01 	sts	0x019A, r1
+	command.parah = 0x00;
+ 4a4:	10 92 9b 01 	sts	0x019B, r1
+	command.paral = 0x00;
+ 4a8:	10 92 9c 01 	sts	0x019C, r1
+	command.tail = CMD_END_BYTE;
+ 4ac:	8f ee       	ldi	r24, 0xEF	; 239
+ 4ae:	80 93 9d 01 	sts	0x019D, r24
+	
+	flush_buffer();
+ 4b2:	0e 94 9d 01 	call	0x33a	; 0x33a <flush_buffer>
+	Dfplayer_Send(&command);
+ 4b6:	86 e9       	ldi	r24, 0x96	; 150
+ 4b8:	91 e0       	ldi	r25, 0x01	; 1
+ 4ba:	0e 94 d5 01 	call	0x3aa	; 0x3aa <Dfplayer_Send>
+ 4be:	83 ed       	ldi	r24, 0xD3	; 211
+ 4c0:	90 e3       	ldi	r25, 0x30	; 48
+ 4c2:	01 97       	sbiw	r24, 0x01	; 1
+ 4c4:	f1 f7       	brne	.-4      	; 0x4c2 <Dfplayer_Query_Files+0x3e>
+ 4c6:	00 c0       	rjmp	.+0      	; 0x4c8 <Dfplayer_Query_Files+0x44>
+ 4c8:	00 00       	nop
+
+	/*************************************************************************
+	*  If Commands are query based, a immediate response will be received
+	*************************************************************************/
+	_delay_ms(50);
+	if(Is_Buffer_Empty() == BUFFER_NOT_EMPTY)
+ 4ca:	0e 94 94 01 	call	0x328	; 0x328 <Is_Buffer_Empty>
+ 4ce:	81 30       	cpi	r24, 0x01	; 1
+ 4d0:	51 f5       	brne	.+84     	; 0x526 <Dfplayer_Query_Files+0xa2>
+	{
+		do{
+			tempholder = Ring_Remove();
+ 4d2:	0e 94 78 01 	call	0x2f0	; 0x2f0 <Ring_Remove>
+		}while(tempholder != CMD_STRT_BYTE);
+ 4d6:	8e 37       	cpi	r24, 0x7E	; 126
+ 4d8:	e1 f7       	brne	.-8      	; 0x4d2 <Dfplayer_Query_Files+0x4e>
+		command.version = Ring_Remove();				// Remove the VER byte from the buffer
+ 4da:	0e 94 78 01 	call	0x2f0	; 0x2f0 <Ring_Remove>
+ 4de:	80 93 97 01 	sts	0x0197, r24
+		command.lenght = Ring_Remove();				// Remove the CMD byte from the buffer
+ 4e2:	0e 94 78 01 	call	0x2f0	; 0x2f0 <Ring_Remove>
+ 4e6:	80 93 98 01 	sts	0x0198, r24
+		command.type = Ring_Remove();
+ 4ea:	0e 94 78 01 	call	0x2f0	; 0x2f0 <Ring_Remove>
+ 4ee:	c9 e9       	ldi	r28, 0x99	; 153
+ 4f0:	d1 e0       	ldi	r29, 0x01	; 1
+ 4f2:	88 83       	st	Y, r24
+		command.feedback = Ring_Remove();
+ 4f4:	0e 94 78 01 	call	0x2f0	; 0x2f0 <Ring_Remove>
+ 4f8:	80 93 9a 01 	sts	0x019A, r24
+		command.parah = Ring_Remove();
+ 4fc:	0e 94 78 01 	call	0x2f0	; 0x2f0 <Ring_Remove>
+ 500:	80 93 9b 01 	sts	0x019B, r24
+		command.paral = Ring_Remove();
+ 504:	0e 94 78 01 	call	0x2f0	; 0x2f0 <Ring_Remove>
+ 508:	80 93 9c 01 	sts	0x019C, r24
+	
+		if(command.type != CMD_ERROR)
+ 50c:	98 81       	ld	r25, Y
+ 50e:	90 34       	cpi	r25, 0x40	; 64
+ 510:	69 f0       	breq	.+26     	; 0x52c <Dfplayer_Query_Files+0xa8>
+		{
+			num_of_files = command.parah;
+ 512:	20 91 9b 01 	lds	r18, 0x019B
+ 516:	30 e0       	ldi	r19, 0x00	; 0
+			num_of_files = ((num_of_files << 8) + command.paral);
+ 518:	32 2f       	mov	r19, r18
+ 51a:	22 27       	eor	r18, r18
+ 51c:	a9 01       	movw	r20, r18
+ 51e:	48 0f       	add	r20, r24
+ 520:	51 1d       	adc	r21, r1
+ 522:	ca 01       	movw	r24, r20
+ 524:	05 c0       	rjmp	.+10     	; 0x530 <Dfplayer_Query_Files+0xac>
+	Returns:
+*/	
+uint16_t Dfplayer_Query_Files()
+{
+	uint8_t tempholder = 0;
+	uint16_t num_of_files = 0;
+ 526:	80 e0       	ldi	r24, 0x00	; 0
+ 528:	90 e0       	ldi	r25, 0x00	; 0
+ 52a:	02 c0       	rjmp	.+4      	; 0x530 <Dfplayer_Query_Files+0xac>
+ 52c:	80 e0       	ldi	r24, 0x00	; 0
+ 52e:	90 e0       	ldi	r25, 0x00	; 0
+			num_of_files = command.parah;
+			num_of_files = ((num_of_files << 8) + command.paral);
+		}
+	}
+	return num_of_files;
+}
+ 530:	df 91       	pop	r29
+ 532:	cf 91       	pop	r28
+ 534:	08 95       	ret
+
+00000536 <Dfplayer_Query_track_playing>:
+
+uint8_t Dfplayer_Query_track_playing()
+{
+	uint8_t track_playing = FALSE;
+	
+	flush_buffer();
+ 536:	0e 94 9d 01 	call	0x33a	; 0x33a <flush_buffer>
+	Dfplayer_Cmd(CMD_STATUS, 0);
+ 53a:	60 e0       	ldi	r22, 0x00	; 0
+ 53c:	70 e0       	ldi	r23, 0x00	; 0
+ 53e:	82 e4       	ldi	r24, 0x42	; 66
+ 540:	0e 94 f3 01 	call	0x3e6	; 0x3e6 <Dfplayer_Cmd>
+		SendDebug("track state: ");
+		USART_SendByte(command.paral);
+		USART_SendByte(0x0a);
+	#endif
+	
+	if(command.paral != 0)
+ 544:	81 e0       	ldi	r24, 0x01	; 1
+ 546:	90 91 9c 01 	lds	r25, 0x019C
+ 54a:	91 11       	cpse	r25, r1
+ 54c:	01 c0       	rjmp	.+2      	; 0x550 <Dfplayer_Query_track_playing+0x1a>
+ 54e:	80 e0       	ldi	r24, 0x00	; 0
+		track_playing = TRUE;
+	
+	return track_playing;
+}
+ 550:	08 95       	ret
+
+00000552 <check_uss_detection>:
+/*	This function will only set the USS detection flag if the current USS count is less than the set threshold.
+	The flag is to be cleared once it has been processed by the main application\
+*/
+void check_uss_detection()
+{
+	uint16_t current_uss_count = Get_Uss_Count();
+ 552:	0e 94 96 04 	call	0x92c	; 0x92c <Get_Uss_Count>
+	
+	/* compare the current uss count with the threshold set	*/
+	if(current_uss_count < uss_threshold_count)
+ 556:	20 91 7e 01 	lds	r18, 0x017E
+ 55a:	30 91 7f 01 	lds	r19, 0x017F
+ 55e:	82 17       	cp	r24, r18
+ 560:	93 07       	cpc	r25, r19
+ 562:	28 f4       	brcc	.+10     	; 0x56e <check_uss_detection+0x1c>
+	{
+		flag_uss_detection = TRUE;
+ 564:	80 91 7b 01 	lds	r24, 0x017B
+ 568:	81 60       	ori	r24, 0x01	; 1
+ 56a:	80 93 7b 01 	sts	0x017B, r24
+ 56e:	08 95       	ret
+
+00000570 <check_pir_detection>:
+/*	This function will only set the PIR detection flag if the current PIR count is less than the set threshold.
+	The flag is to be cleared once it has been processed by the main application\
+*/
+void check_pir_detection()
+{
+	uint8_t current_pir_count = Get_Pir_count();
+ 570:	0e 94 09 05 	call	0xa12	; 0xa12 <Get_Pir_count>
+	
+	/* compare the current pir count with the threshold set	*/
+	if(current_pir_count > PIR_THRESHOLD_COUNT)
+ 574:	88 23       	and	r24, r24
+ 576:	29 f0       	breq	.+10     	; 0x582 <check_pir_detection+0x12>
+	{
+		flag_pir_detection = TRUE;
+ 578:	80 91 7b 01 	lds	r24, 0x017B
+ 57c:	82 60       	ori	r24, 0x02	; 2
+ 57e:	80 93 7b 01 	sts	0x017B, r24
+ 582:	08 95       	ret
+
+00000584 <main>:
+void check_pir_detection();
+
+int main(void)
+{
+	/* Initialize all system peripherals	*/
+	Init_Pir();
+ 584:	0e 94 82 04 	call	0x904	; 0x904 <Init_Pir>
+	Init_Ultrasonic_Sensor();
+ 588:	0e 94 8b 04 	call	0x916	; 0x916 <Init_Ultrasonic_Sensor>
+	Init_Timer0();					// Setup the timer to trigger the USS at regular intervals.
+ 58c:	0e 94 9b 04 	call	0x936	; 0x936 <Init_Timer0>
+	Init_Timer1();					// Setup the timer that will count the duration(lenght) of the echo'ed USS pulse
+ 590:	0e 94 a1 04 	call	0x942	; 0x942 <Init_Timer1>
+	USART_Init();
+ 594:	0e 94 53 00 	call	0xa6	; 0xa6 <USART_Init>
+	init_relay();
+ 598:	0e 94 0f 05 	call	0xa1e	; 0xa1e <init_relay>
+	DebugLedInit();
+ 59c:	0e 94 a2 01 	call	0x344	; 0x344 <DebugLedInit>
+ 5a0:	2f eb       	ldi	r18, 0xBF	; 191
+ 5a2:	86 ec       	ldi	r24, 0xC6	; 198
+ 5a4:	9d e2       	ldi	r25, 0x2D	; 45
+ 5a6:	21 50       	subi	r18, 0x01	; 1
+ 5a8:	80 40       	sbci	r24, 0x00	; 0
+ 5aa:	90 40       	sbci	r25, 0x00	; 0
+ 5ac:	e1 f7       	brne	.-8      	; 0x5a6 <main+0x22>
+ 5ae:	00 c0       	rjmp	.+0      	; 0x5b0 <main+0x2c>
+ 5b0:	00 00       	nop
+	
+	_delay_ms(15000);				// Startup delay to warm up the PIR sensor
+	
+	sei();
+ 5b2:	78 94       	sei
+	
+	DebugLedTransmit(LED_ON, YELLOW_LED);
+ 5b4:	61 e0       	ldi	r22, 0x01	; 1
+ 5b6:	81 e0       	ldi	r24, 0x01	; 1
+ 5b8:	0e 94 a9 01 	call	0x352	; 0x352 <DebugLedTransmit>
+ 5bc:	2f e3       	ldi	r18, 0x3F	; 63
+ 5be:	8d e0       	ldi	r24, 0x0D	; 13
+ 5c0:	93 e0       	ldi	r25, 0x03	; 3
+ 5c2:	21 50       	subi	r18, 0x01	; 1
+ 5c4:	80 40       	sbci	r24, 0x00	; 0
+ 5c6:	90 40       	sbci	r25, 0x00	; 0
+ 5c8:	e1 f7       	brne	.-8      	; 0x5c2 <main+0x3e>
+ 5ca:	00 c0       	rjmp	.+0      	; 0x5cc <main+0x48>
+ 5cc:	00 00       	nop
+	_delay_ms(1000);
+	DebugLedTransmit(LED_ON, LED_RED);
+ 5ce:	62 e0       	ldi	r22, 0x02	; 2
+ 5d0:	81 e0       	ldi	r24, 0x01	; 1
+ 5d2:	0e 94 a9 01 	call	0x352	; 0x352 <DebugLedTransmit>
+ 5d6:	2f e3       	ldi	r18, 0x3F	; 63
+ 5d8:	8d e0       	ldi	r24, 0x0D	; 13
+ 5da:	93 e0       	ldi	r25, 0x03	; 3
+ 5dc:	21 50       	subi	r18, 0x01	; 1
+ 5de:	80 40       	sbci	r24, 0x00	; 0
+ 5e0:	90 40       	sbci	r25, 0x00	; 0
+ 5e2:	e1 f7       	brne	.-8      	; 0x5dc <main+0x58>
+ 5e4:	00 c0       	rjmp	.+0      	; 0x5e6 <main+0x62>
+ 5e6:	00 00       	nop
+	_delay_ms(1000);
+	DebugLedTransmit(LED_OFF, YELLOW_LED);
+ 5e8:	61 e0       	ldi	r22, 0x01	; 1
+ 5ea:	80 e0       	ldi	r24, 0x00	; 0
+ 5ec:	0e 94 a9 01 	call	0x352	; 0x352 <DebugLedTransmit>
+ 5f0:	2f e3       	ldi	r18, 0x3F	; 63
+ 5f2:	8d e0       	ldi	r24, 0x0D	; 13
+ 5f4:	93 e0       	ldi	r25, 0x03	; 3
+ 5f6:	21 50       	subi	r18, 0x01	; 1
+ 5f8:	80 40       	sbci	r24, 0x00	; 0
+ 5fa:	90 40       	sbci	r25, 0x00	; 0
+ 5fc:	e1 f7       	brne	.-8      	; 0x5f6 <main+0x72>
+ 5fe:	00 c0       	rjmp	.+0      	; 0x600 <main+0x7c>
+ 600:	00 00       	nop
+	_delay_ms(1000);
+	DebugLedTransmit(LED_OFF, LED_RED);
+ 602:	62 e0       	ldi	r22, 0x02	; 2
+ 604:	80 e0       	ldi	r24, 0x00	; 0
+ 606:	0e 94 a9 01 	call	0x352	; 0x352 <DebugLedTransmit>
+	
+	#if DEBUG_MSG_ON
+		SendDebug("Serial OK!");
+ 60a:	81 e0       	ldi	r24, 0x01	; 1
+ 60c:	91 e0       	ldi	r25, 0x01	; 1
+ 60e:	0e 94 6a 00 	call	0xd4	; 0xd4 <SendDebug>
+	#endif
+	
+	/* Get a USS threshold value */
+	Trigger_Ultrasonic_Sensor();
+ 612:	0e 94 42 04 	call	0x884	; 0x884 <Trigger_Ultrasonic_Sensor>
+ 616:	2f e3       	ldi	r18, 0x3F	; 63
+ 618:	8d e0       	ldi	r24, 0x0D	; 13
+ 61a:	93 e0       	ldi	r25, 0x03	; 3
+ 61c:	21 50       	subi	r18, 0x01	; 1
+ 61e:	80 40       	sbci	r24, 0x00	; 0
+ 620:	90 40       	sbci	r25, 0x00	; 0
+ 622:	e1 f7       	brne	.-8      	; 0x61c <main+0x98>
+ 624:	00 c0       	rjmp	.+0      	; 0x626 <main+0xa2>
+ 626:	00 00       	nop
+	_delay_ms(1000);
+	uss_threshold_count = Get_Uss_Count();
+ 628:	0e 94 96 04 	call	0x92c	; 0x92c <Get_Uss_Count>
+	/* reduce the count by 30% */
+	uss_threshold_count -= 1000; 
+ 62c:	88 5e       	subi	r24, 0xE8	; 232
+ 62e:	93 40       	sbci	r25, 0x03	; 3
+ 630:	90 93 7f 01 	sts	0x017F, r25
+ 634:	80 93 7e 01 	sts	0x017E, r24
+	#if DEBUG_MSG_ON
+		SendDebug("USS calibrated at:");
+ 638:	8c e0       	ldi	r24, 0x0C	; 12
+ 63a:	91 e0       	ldi	r25, 0x01	; 1
+ 63c:	0e 94 6a 00 	call	0xd4	; 0xd4 <SendDebug>
+		USART_Transmit_dec(uss_threshold_count);
+ 640:	80 91 7e 01 	lds	r24, 0x017E
+ 644:	90 91 7f 01 	lds	r25, 0x017F
+ 648:	0e 94 79 00 	call	0xf2	; 0xf2 <USART_Transmit_dec>
+	#endif
+	
+	/* Find the number of files present in the SD card	*/
+	number_of_tracks = Dfplayer_Query_Files();
+ 64c:	0e 94 42 02 	call	0x484	; 0x484 <Dfplayer_Query_Files>
+ 650:	90 93 7d 01 	sts	0x017D, r25
+ 654:	80 93 7c 01 	sts	0x017C, r24
+	#if DEBUG_MSG_ON
+		SendDebug("tracks: ");
+ 658:	8f e1       	ldi	r24, 0x1F	; 31
+ 65a:	91 e0       	ldi	r25, 0x01	; 1
+ 65c:	0e 94 6a 00 	call	0xd4	; 0xd4 <SendDebug>
+		USART_Transmit_dec(number_of_tracks);
+ 660:	80 91 7c 01 	lds	r24, 0x017C
+ 664:	90 91 7d 01 	lds	r25, 0x017D
+ 668:	0e 94 79 00 	call	0xf2	; 0xf2 <USART_Transmit_dec>
+		USART_SendByte(0x0a);
+ 66c:	8a e0       	ldi	r24, 0x0A	; 10
+ 66e:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+	#endif
+		
+	/* Reset the mp3 player module	*/
+	Dfplayer_Cmd(CMD_RESET, 0);	
+ 672:	60 e0       	ldi	r22, 0x00	; 0
+ 674:	70 e0       	ldi	r23, 0x00	; 0
+ 676:	8c e0       	ldi	r24, 0x0C	; 12
+ 678:	0e 94 f3 01 	call	0x3e6	; 0x3e6 <Dfplayer_Cmd>
+	/* start main application	*/
+    while(1)
+    {		
+		
+		#if DEBUG_LED_ON
+			DebugLedTransmit(LED_ON, LED_RED);
+ 67c:	62 e0       	ldi	r22, 0x02	; 2
+ 67e:	81 e0       	ldi	r24, 0x01	; 1
+ 680:	0e 94 a9 01 	call	0x352	; 0x352 <DebugLedTransmit>
+ 684:	83 ed       	ldi	r24, 0xD3	; 211
+ 686:	90 e3       	ldi	r25, 0x30	; 48
+ 688:	01 97       	sbiw	r24, 0x01	; 1
+ 68a:	f1 f7       	brne	.-4      	; 0x688 <main+0x104>
+ 68c:	00 c0       	rjmp	.+0      	; 0x68e <main+0x10a>
+ 68e:	00 00       	nop
+			_delay_ms(50);
+			DebugLedTransmit(LED_OFF, LED_RED);
+ 690:	62 e0       	ldi	r22, 0x02	; 2
+ 692:	80 e0       	ldi	r24, 0x00	; 0
+ 694:	0e 94 a9 01 	call	0x352	; 0x352 <DebugLedTransmit>
+ 698:	87 ea       	ldi	r24, 0xA7	; 167
+ 69a:	91 e6       	ldi	r25, 0x61	; 97
+ 69c:	01 97       	sbiw	r24, 0x01	; 1
+ 69e:	f1 f7       	brne	.-4      	; 0x69c <main+0x118>
+ 6a0:	00 c0       	rjmp	.+0      	; 0x6a2 <main+0x11e>
+ 6a2:	00 00       	nop
+			_delay_ms(100);
+		#endif
+		
+		switch(system_state)
+ 6a4:	80 91 7a 01 	lds	r24, 0x017A
+ 6a8:	88 23       	and	r24, r24
+ 6aa:	21 f0       	breq	.+8      	; 0x6b4 <main+0x130>
+ 6ac:	81 30       	cpi	r24, 0x01	; 1
+ 6ae:	09 f4       	brne	.+2      	; 0x6b2 <main+0x12e>
+ 6b0:	77 c0       	rjmp	.+238    	; 0x7a0 <main+0x21c>
+ 6b2:	b1 c0       	rjmp	.+354    	; 0x816 <main+0x292>
+		{
+			case STANBY_STATE:
+				#if DEBUG_LED_ON
+					DebugLedTransmit(LED_ON, YELLOW_LED);
+ 6b4:	61 e0       	ldi	r22, 0x01	; 1
+ 6b6:	81 e0       	ldi	r24, 0x01	; 1
+ 6b8:	0e 94 a9 01 	call	0x352	; 0x352 <DebugLedTransmit>
+				#endif
+				
+				check_pir_detection();
+ 6bc:	0e 94 b8 02 	call	0x570	; 0x570 <check_pir_detection>
+				check_uss_detection();
+ 6c0:	0e 94 a9 02 	call	0x552	; 0x552 <check_uss_detection>
+				RELAY_OFF;
+ 6c4:	28 98       	cbi	0x05, 0	; 5
+				#if DEBUG_MSG_ON
+					USART_SendByte(0x0a);
+ 6c6:	8a e0       	ldi	r24, 0x0A	; 10
+ 6c8:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+					SendDebug("STANDBY");
+ 6cc:	88 e2       	ldi	r24, 0x28	; 40
+ 6ce:	91 e0       	ldi	r25, 0x01	; 1
+ 6d0:	0e 94 6a 00 	call	0xd4	; 0xd4 <SendDebug>
+					SendDebug(" flag_USS:");
+ 6d4:	80 e3       	ldi	r24, 0x30	; 48
+ 6d6:	91 e0       	ldi	r25, 0x01	; 1
+ 6d8:	0e 94 6a 00 	call	0xd4	; 0xd4 <SendDebug>
+					USART_Transmit_dec(flag_uss_detection);
+ 6dc:	80 91 7b 01 	lds	r24, 0x017B
+ 6e0:	81 70       	andi	r24, 0x01	; 1
+ 6e2:	90 e0       	ldi	r25, 0x00	; 0
+ 6e4:	0e 94 79 00 	call	0xf2	; 0xf2 <USART_Transmit_dec>
+					SendDebug(" flag_PIR:");
+ 6e8:	8b e3       	ldi	r24, 0x3B	; 59
+ 6ea:	91 e0       	ldi	r25, 0x01	; 1
+ 6ec:	0e 94 6a 00 	call	0xd4	; 0xd4 <SendDebug>
+					USART_Transmit_dec(flag_pir_detection);
+ 6f0:	80 91 7b 01 	lds	r24, 0x017B
+ 6f4:	86 95       	lsr	r24
+ 6f6:	81 70       	andi	r24, 0x01	; 1
+ 6f8:	90 e0       	ldi	r25, 0x00	; 0
+ 6fa:	0e 94 79 00 	call	0xf2	; 0xf2 <USART_Transmit_dec>
+				#endif
+				
+				/* Area entry detection	*/
+//				if(flag_uss_detection || flag_pir_detection)	//vineet elevator
+				if(flag_pir_detection)		// vineet signboard
+ 6fe:	80 91 7b 01 	lds	r24, 0x017B
+ 702:	81 ff       	sbrs	r24, 1
+ 704:	bb cf       	rjmp	.-138    	; 0x67c <main+0xf8>
+				{
+					/* re-checking the PIR sensor for motion if presence deteced by USS	*/
+					check_pir_detection();
+ 706:	0e 94 b8 02 	call	0x570	; 0x570 <check_pir_detection>
+					
+					if(flag_pir_detection == TRUE)
+ 70a:	80 91 7b 01 	lds	r24, 0x017B
+ 70e:	81 ff       	sbrs	r24, 1
+ 710:	3a c0       	rjmp	.+116    	; 0x786 <main+0x202>
+					{
+						#if DEBUG_MSG_ON
+							USART_SendByte(0x0a);
+ 712:	8a e0       	ldi	r24, 0x0A	; 10
+ 714:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+							SendDebug("Playing track: ");
+ 718:	86 e4       	ldi	r24, 0x46	; 70
+ 71a:	91 e0       	ldi	r25, 0x01	; 1
+ 71c:	0e 94 6a 00 	call	0xd4	; 0xd4 <SendDebug>
+							USART_Transmit_dec(track_number);
+ 720:	80 91 00 01 	lds	r24, 0x0100
+ 724:	90 e0       	ldi	r25, 0x00	; 0
+ 726:	0e 94 79 00 	call	0xf2	; 0xf2 <USART_Transmit_dec>
+						#endif
+						
+						Dfplayer_Cmd(CMD_PLY_TRCK, track_number);		// Send command to mp3 player module to play track
+ 72a:	60 91 00 01 	lds	r22, 0x0100
+ 72e:	70 e0       	ldi	r23, 0x00	; 0
+ 730:	83 e0       	ldi	r24, 0x03	; 3
+ 732:	0e 94 f3 01 	call	0x3e6	; 0x3e6 <Dfplayer_Cmd>
+ 736:	9f e3       	ldi	r25, 0x3F	; 63
+ 738:	2d e0       	ldi	r18, 0x0D	; 13
+ 73a:	83 e0       	ldi	r24, 0x03	; 3
+ 73c:	91 50       	subi	r25, 0x01	; 1
+ 73e:	20 40       	sbci	r18, 0x00	; 0
+ 740:	80 40       	sbci	r24, 0x00	; 0
+ 742:	e1 f7       	brne	.-8      	; 0x73c <main+0x1b8>
+ 744:	00 c0       	rjmp	.+0      	; 0x746 <main+0x1c2>
+ 746:	00 00       	nop
+						_delay_ms(1000);
+						track_number++;
+ 748:	20 91 00 01 	lds	r18, 0x0100
+ 74c:	2f 5f       	subi	r18, 0xFF	; 255
+ 74e:	20 93 00 01 	sts	0x0100, r18
+						if(track_number > number_of_tracks)
+ 752:	30 e0       	ldi	r19, 0x00	; 0
+ 754:	80 91 7c 01 	lds	r24, 0x017C
+ 758:	90 91 7d 01 	lds	r25, 0x017D
+ 75c:	82 17       	cp	r24, r18
+ 75e:	93 07       	cpc	r25, r19
+ 760:	18 f4       	brcc	.+6      	; 0x768 <main+0x1e4>
+							track_number = 1;
+ 762:	81 e0       	ldi	r24, 0x01	; 1
+ 764:	80 93 00 01 	sts	0x0100, r24
+						
+						flag_track_playing = TRUE;
+ 768:	80 91 7b 01 	lds	r24, 0x017B
+ 76c:	84 60       	ori	r24, 0x04	; 4
+ 76e:	80 93 7b 01 	sts	0x017B, r24
+						system_state = ACTIVE_STATE;
+ 772:	81 e0       	ldi	r24, 0x01	; 1
+ 774:	80 93 7a 01 	sts	0x017A, r24
+						#if DEBUG_MSG_ON
+							SendDebug("Presence detected");
+ 778:	86 e5       	ldi	r24, 0x56	; 86
+ 77a:	91 e0       	ldi	r25, 0x01	; 1
+ 77c:	0e 94 6a 00 	call	0xd4	; 0xd4 <SendDebug>
+							USART_SendByte(0x0a);
+ 780:	8a e0       	ldi	r24, 0x0A	; 10
+ 782:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+						#endif	
+					}
+					flag_uss_detection = FALSE;
+ 786:	80 91 7b 01 	lds	r24, 0x017B
+ 78a:	8e 7f       	andi	r24, 0xFE	; 254
+ 78c:	80 93 7b 01 	sts	0x017B, r24
+					flag_pir_detection = FALSE;
+ 790:	80 91 7b 01 	lds	r24, 0x017B
+ 794:	8d 7f       	andi	r24, 0xFD	; 253
+ 796:	80 93 7b 01 	sts	0x017B, r24
+					Reset_Pir_count();
+ 79a:	0e 94 0c 05 	call	0xa18	; 0xa18 <Reset_Pir_count>
+ 79e:	6e cf       	rjmp	.-292    	; 0x67c <main+0xf8>
+				}
+				break;
+			
+			case ACTIVE_STATE:
+				#if DEBUG_LED_ON
+					DebugLedTransmit(LED_OFF, YELLOW_LED);
+ 7a0:	61 e0       	ldi	r22, 0x01	; 1
+ 7a2:	80 e0       	ldi	r24, 0x00	; 0
+ 7a4:	0e 94 a9 01 	call	0x352	; 0x352 <DebugLedTransmit>
+				#endif
+				
+				check_pir_detection();
+ 7a8:	0e 94 b8 02 	call	0x570	; 0x570 <check_pir_detection>
+				check_uss_detection();
+ 7ac:	0e 94 a9 02 	call	0x552	; 0x552 <check_uss_detection>
+				RELAY_ON;
+ 7b0:	28 9a       	sbi	0x05, 0	; 5
+				#if DEBUG_MSG_ON
+					USART_SendByte(0x0a);
+ 7b2:	8a e0       	ldi	r24, 0x0A	; 10
+ 7b4:	0e 94 62 00 	call	0xc4	; 0xc4 <USART_SendByte>
+					SendDebug("ACTIVE ");
+ 7b8:	88 e6       	ldi	r24, 0x68	; 104
+ 7ba:	91 e0       	ldi	r25, 0x01	; 1
+ 7bc:	0e 94 6a 00 	call	0xd4	; 0xd4 <SendDebug>
+					SendDebug(" flag_USS:");
+ 7c0:	80 e3       	ldi	r24, 0x30	; 48
+ 7c2:	91 e0       	ldi	r25, 0x01	; 1
+ 7c4:	0e 94 6a 00 	call	0xd4	; 0xd4 <SendDebug>
+					USART_Transmit_dec(flag_uss_detection);
+ 7c8:	80 91 7b 01 	lds	r24, 0x017B
+ 7cc:	81 70       	andi	r24, 0x01	; 1
+ 7ce:	90 e0       	ldi	r25, 0x00	; 0
+ 7d0:	0e 94 79 00 	call	0xf2	; 0xf2 <USART_Transmit_dec>
+					SendDebug(" flag_PIR:");
+ 7d4:	8b e3       	ldi	r24, 0x3B	; 59
+ 7d6:	91 e0       	ldi	r25, 0x01	; 1
+ 7d8:	0e 94 6a 00 	call	0xd4	; 0xd4 <SendDebug>
+					USART_Transmit_dec(flag_pir_detection);
+ 7dc:	80 91 7b 01 	lds	r24, 0x017B
+ 7e0:	86 95       	lsr	r24
+ 7e2:	81 70       	andi	r24, 0x01	; 1
+ 7e4:	90 e0       	ldi	r25, 0x00	; 0
+ 7e6:	0e 94 79 00 	call	0xf2	; 0xf2 <USART_Transmit_dec>
+						//#endif
+					//}
+				//}
+				
+				/* check validity of the track playing flag by querying the mp3 module for its status	*/
+				/*else*/ if(FALSE == Dfplayer_Query_track_playing())
+ 7ea:	0e 94 9b 02 	call	0x536	; 0x536 <Dfplayer_Query_track_playing>
+ 7ee:	81 11       	cpse	r24, r1
+ 7f0:	45 cf       	rjmp	.-374    	; 0x67c <main+0xf8>
+					//_delay_ms(1000);
+					/****************** Case for Vineet	*********************/
+					
+					
+					/****************** case for vineet signboard ******************/
+					system_state = STANBY_STATE;
+ 7f2:	10 92 7a 01 	sts	0x017A, r1
+					Dfplayer_Cmd(CMD_PAUSE, 0);
+ 7f6:	60 e0       	ldi	r22, 0x00	; 0
+ 7f8:	70 e0       	ldi	r23, 0x00	; 0
+ 7fa:	8e e0       	ldi	r24, 0x0E	; 14
+ 7fc:	0e 94 f3 01 	call	0x3e6	; 0x3e6 <Dfplayer_Cmd>
+					RELAY_OFF;
+ 800:	28 98       	cbi	0x05, 0	; 5
+ 802:	9f e3       	ldi	r25, 0x3F	; 63
+ 804:	22 e4       	ldi	r18, 0x42	; 66
+ 806:	8f e0       	ldi	r24, 0x0F	; 15
+ 808:	91 50       	subi	r25, 0x01	; 1
+ 80a:	20 40       	sbci	r18, 0x00	; 0
+ 80c:	80 40       	sbci	r24, 0x00	; 0
+ 80e:	e1 f7       	brne	.-8      	; 0x808 <main+0x284>
+ 810:	00 c0       	rjmp	.+0      	; 0x812 <main+0x28e>
+ 812:	00 00       	nop
+ 814:	33 cf       	rjmp	.-410    	; 0x67c <main+0xf8>
+				}
+				break;
+				
+			default:
+				#if DEBUG_MSG_ON
+					SendDebug("defaulted");
+ 816:	80 e7       	ldi	r24, 0x70	; 112
+ 818:	91 e0       	ldi	r25, 0x01	; 1
+ 81a:	0e 94 6a 00 	call	0xd4	; 0xd4 <SendDebug>
+				#endif
+				break;
+ 81e:	2e cf       	rjmp	.-420    	; 0x67c <main+0xf8>
+
+00000820 <__vector_13>:
+
+//#define SET_USS_FLAG	({flag_register_controller |= (1 << 2);})
+//#define CLEAR_USS_FLAG  ({flag_register_controller &= ~(1 << 2);})
+
+ISR(TIMER1_OVF_vect)
+{
+ 820:	1f 92       	push	r1
+ 822:	0f 92       	push	r0
+ 824:	0f b6       	in	r0, 0x3f	; 63
+ 826:	0f 92       	push	r0
+ 828:	11 24       	eor	r1, r1
+ 82a:	8f 93       	push	r24
+ 82c:	9f 93       	push	r25
+	++timer1_ovf_count;
+ 82e:	80 91 83 01 	lds	r24, 0x0183
+ 832:	90 91 84 01 	lds	r25, 0x0184
+ 836:	01 96       	adiw	r24, 0x01	; 1
+ 838:	90 93 84 01 	sts	0x0184, r25
+ 83c:	80 93 83 01 	sts	0x0183, r24
+}
+ 840:	9f 91       	pop	r25
+ 842:	8f 91       	pop	r24
+ 844:	0f 90       	pop	r0
+ 846:	0f be       	out	0x3f, r0	; 63
+ 848:	0f 90       	pop	r0
+ 84a:	1f 90       	pop	r1
+ 84c:	18 95       	reti
+
+0000084e <__vector_2>:
+		Trigger_Ultrasonic_Sensor();
+	}
+}
+
+ISR(PIR_INTERRUPT_VECT)
+{
+ 84e:	1f 92       	push	r1
+ 850:	0f 92       	push	r0
+ 852:	0f b6       	in	r0, 0x3f	; 63
+ 854:	0f 92       	push	r0
+ 856:	11 24       	eor	r1, r1
+ 858:	8f 93       	push	r24
+	pir_trigger_count++;
+ 85a:	80 91 87 01 	lds	r24, 0x0187
+ 85e:	8f 5f       	subi	r24, 0xFF	; 255
+ 860:	80 93 87 01 	sts	0x0187, r24
+	//#if DEBUG_MSG_ON
+		//SendDebug("PIR ");
+		//USART_Transmit_dec(pir_trigger_count);
+		//USART_SendByte(0x0D);
+	//#endif
+}
+ 864:	8f 91       	pop	r24
+ 866:	0f 90       	pop	r0
+ 868:	0f be       	out	0x3f, r0	; 63
+ 86a:	0f 90       	pop	r0
+ 86c:	1f 90       	pop	r1
+ 86e:	18 95       	reti
+
+00000870 <__vector_9>:
+	}
+}
+
+/* System tick increments every 1.024ms	*/
+ISR(TIMER2_OVF_vect)
+{
+ 870:	1f 92       	push	r1
+ 872:	0f 92       	push	r0
+ 874:	0f b6       	in	r0, 0x3f	; 63
+ 876:	0f 92       	push	r0
+ 878:	11 24       	eor	r1, r1
+	//sys_tick++;
+}
+ 87a:	0f 90       	pop	r0
+ 87c:	0f be       	out	0x3f, r0	; 63
+ 87e:	0f 90       	pop	r0
+ 880:	1f 90       	pop	r1
+ 882:	18 95       	reti
+
+00000884 <Trigger_Ultrasonic_Sensor>:
+	TCCR2B = (1 << CS21) | (1 << CS20);		// a prescalar of 32 gives a 1ms overflow time at 8MHz clock
+}
+
+void Trigger_Ultrasonic_Sensor()									// Function tested for 10us trigger 
+{
+	USS_TRIGGER_PORT |= (1 << USS_TRIGGER_PIN);
+ 884:	5c 9a       	sbi	0x0b, 4	; 11
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 886:	85 e0       	ldi	r24, 0x05	; 5
+ 888:	8a 95       	dec	r24
+ 88a:	f1 f7       	brne	.-4      	; 0x888 <Trigger_Ultrasonic_Sensor+0x4>
+	_delay_us(15);													// 10us Pulse as per datasheet of HC-SR04 Ultrasonic Sensor
+	USS_TRIGGER_PORT &= ~(1 << USS_TRIGGER_PIN);
+ 88c:	5c 98       	cbi	0x0b, 4	; 11
+ 88e:	08 95       	ret
+
+00000890 <__vector_16>:
+{
+	++timer1_ovf_count;
+}
+
+ISR(TIMER0_OVF_vect)
+{
+ 890:	1f 92       	push	r1
+ 892:	0f 92       	push	r0
+ 894:	0f b6       	in	r0, 0x3f	; 63
+ 896:	0f 92       	push	r0
+ 898:	11 24       	eor	r1, r1
+ 89a:	2f 93       	push	r18
+ 89c:	3f 93       	push	r19
+ 89e:	4f 93       	push	r20
+ 8a0:	5f 93       	push	r21
+ 8a2:	6f 93       	push	r22
+ 8a4:	7f 93       	push	r23
+ 8a6:	8f 93       	push	r24
+ 8a8:	9f 93       	push	r25
+ 8aa:	af 93       	push	r26
+ 8ac:	bf 93       	push	r27
+ 8ae:	ef 93       	push	r30
+ 8b0:	ff 93       	push	r31
+	static uint16_t timer_ovf_count = 0;
+
+	if((timer_ovf_count++) > 3125)
+ 8b2:	80 91 80 01 	lds	r24, 0x0180
+ 8b6:	90 91 81 01 	lds	r25, 0x0181
+ 8ba:	86 33       	cpi	r24, 0x36	; 54
+ 8bc:	2c e0       	ldi	r18, 0x0C	; 12
+ 8be:	92 07       	cpc	r25, r18
+ 8c0:	30 f4       	brcc	.+12     	; 0x8ce <__vector_16+0x3e>
+ 8c2:	01 96       	adiw	r24, 0x01	; 1
+ 8c4:	90 93 81 01 	sts	0x0181, r25
+ 8c8:	80 93 80 01 	sts	0x0180, r24
+ 8cc:	0a c0       	rjmp	.+20     	; 0x8e2 <__vector_16+0x52>
+	{
+		//#if DEBUG_MSG_ON
+			//SendDebug("UT");
+		//#endif
+		timer_ovf_count = 0;
+ 8ce:	10 92 81 01 	sts	0x0181, r1
+ 8d2:	10 92 80 01 	sts	0x0180, r1
+		TCCR0B &= ~(1 << CS00);		// Stop the timer. Timer is restarted in the USS echo received interrupt
+ 8d6:	85 b5       	in	r24, 0x25	; 37
+ 8d8:	8e 7f       	andi	r24, 0xFE	; 254
+ 8da:	85 bd       	out	0x25, r24	; 37
+		TCNT0 = 0;
+ 8dc:	16 bc       	out	0x26, r1	; 38
+		Trigger_Ultrasonic_Sensor();
+ 8de:	0e 94 42 04 	call	0x884	; 0x884 <Trigger_Ultrasonic_Sensor>
+	}
+}
+ 8e2:	ff 91       	pop	r31
+ 8e4:	ef 91       	pop	r30
+ 8e6:	bf 91       	pop	r27
+ 8e8:	af 91       	pop	r26
+ 8ea:	9f 91       	pop	r25
+ 8ec:	8f 91       	pop	r24
+ 8ee:	7f 91       	pop	r23
+ 8f0:	6f 91       	pop	r22
+ 8f2:	5f 91       	pop	r21
+ 8f4:	4f 91       	pop	r20
+ 8f6:	3f 91       	pop	r19
+ 8f8:	2f 91       	pop	r18
+ 8fa:	0f 90       	pop	r0
+ 8fc:	0f be       	out	0x3f, r0	; 63
+ 8fe:	0f 90       	pop	r0
+ 900:	1f 90       	pop	r1
+ 902:	18 95       	reti
+
+00000904 <Init_Pir>:
+	USS_TRIGGER_PORT &= ~(1 << USS_TRIGGER_PIN);
+}
+
+void Init_Pir()
+{
+	PIR_INPUT_DIR_REG &= ~(1 << PIR_INPUT_PIN);						// Set the pin direction as input
+ 904:	53 98       	cbi	0x0a, 3	; 10
+	PIR_INPUT_PORT |= (1 << PIR_INPUT_PIN);							// Setup the controllers internal Pull up resistor
+ 906:	5b 9a       	sbi	0x0b, 3	; 11
+
+	EICRA |= (1 << ISC11) | (1 << ISC10);							// Rising edge should trigger the interrupt
+ 908:	e9 e6       	ldi	r30, 0x69	; 105
+ 90a:	f0 e0       	ldi	r31, 0x00	; 0
+ 90c:	80 81       	ld	r24, Z
+ 90e:	8c 60       	ori	r24, 0x0C	; 12
+ 910:	80 83       	st	Z, r24
+	EIMSK |= (1 << INT1);
+ 912:	e9 9a       	sbi	0x1d, 1	; 29
+ 914:	08 95       	ret
+
+00000916 <Init_Ultrasonic_Sensor>:
+}
+
+void Init_Ultrasonic_Sensor()
+{
+	USS_TRIGGER_PORT &= ~(1 << USS_TRIGGER_PIN);					// Initial state of trigger is LOW
+ 916:	5c 98       	cbi	0x0b, 4	; 11
+	USS_TRIGGER_DIR_REG |= (1 << USS_TRIGGER_PIN);					// Set the pin direction as output
+ 918:	54 9a       	sbi	0x0a, 4	; 10
+	
+	USS_ECHO_PORT |= (1 << USS_ECHO_PIN);							// Keep ECHO pin pulled up
+ 91a:	5a 9a       	sbi	0x0b, 2	; 11
+	USS_ECHO_DIR_REG &= ~(1 << USS_ECHO_PIN);						// ECHO pin is set a s input
+ 91c:	52 98       	cbi	0x0a, 2	; 10
+	
+	/* Setup rising edge interrupt on the echo pin	*/	
+	EICRA |= (1 << ISC01) | (1 << ISC00);							// Set the interrupt to trigger at the rising edge.
+ 91e:	e9 e6       	ldi	r30, 0x69	; 105
+ 920:	f0 e0       	ldi	r31, 0x00	; 0
+ 922:	80 81       	ld	r24, Z
+ 924:	83 60       	ori	r24, 0x03	; 3
+ 926:	80 83       	st	Z, r24
+	EIMSK |= (1 << INT0);
+ 928:	e8 9a       	sbi	0x1d, 0	; 29
+ 92a:	08 95       	ret
+
+0000092c <Get_Uss_Count>:
+}
+
+uint16_t Get_Uss_Count()
+{
+	// TODO: replace with a flag to check if the USS ECHO pulse has been received Speed can be 
+	return UssPulseCount;
+ 92c:	80 91 85 01 	lds	r24, 0x0185
+ 930:	90 91 86 01 	lds	r25, 0x0186
+}
+ 934:	08 95       	ret
+
+00000936 <Init_Timer0>:
+
+
+/* Timer 0 will be used to auto trigger the USS	@ periodic intervals	*/
+void Init_Timer0()
+{
+	TIMSK0 |= (1 << TOIE0);
+ 936:	ee e6       	ldi	r30, 0x6E	; 110
+ 938:	f0 e0       	ldi	r31, 0x00	; 0
+ 93a:	80 81       	ld	r24, Z
+ 93c:	81 60       	ori	r24, 0x01	; 1
+ 93e:	80 83       	st	Z, r24
+ 940:	08 95       	ret
+
+00000942 <Init_Timer1>:
+	//TCCR0 |= (1 << CS00);		// Start the timer	default 256us overflow rate @ 1MHZ.
+}
+
+void Init_Timer1()
+{
+	TCNT1 = 0;
+ 942:	10 92 85 00 	sts	0x0085, r1
+ 946:	10 92 84 00 	sts	0x0084, r1
+	TIMSK1 |= (1 << TOIE1);
+ 94a:	ef e6       	ldi	r30, 0x6F	; 111
+ 94c:	f0 e0       	ldi	r31, 0x00	; 0
+ 94e:	80 81       	ld	r24, Z
+ 950:	81 60       	ori	r24, 0x01	; 1
+ 952:	80 83       	st	Z, r24
+ 954:	08 95       	ret
+
+00000956 <Start_Timer1>:
+}
+
+void Start_Timer1()
+{
+	TCCR1B |= (1 << CS10);		// No pre-scalar
+ 956:	e1 e8       	ldi	r30, 0x81	; 129
+ 958:	f0 e0       	ldi	r31, 0x00	; 0
+ 95a:	80 81       	ld	r24, Z
+ 95c:	81 60       	ori	r24, 0x01	; 1
+ 95e:	80 83       	st	Z, r24
+ 960:	08 95       	ret
+
+00000962 <Stop_Timer1>:
+}
+
+void Stop_Timer1()
+{
+	TCCR1B &= ~(1 << CS10);
+ 962:	e1 e8       	ldi	r30, 0x81	; 129
+ 964:	f0 e0       	ldi	r31, 0x00	; 0
+ 966:	80 81       	ld	r24, Z
+ 968:	8e 7f       	andi	r24, 0xFE	; 254
+ 96a:	80 83       	st	Z, r24
+ 96c:	08 95       	ret
+
+0000096e <__vector_1>:
+		//USART_SendByte(0x0D);
+	//#endif
+}
+
+ISR(USS_INTERRUPT_VECT)				
+{
+ 96e:	1f 92       	push	r1
+ 970:	0f 92       	push	r0
+ 972:	0f b6       	in	r0, 0x3f	; 63
+ 974:	0f 92       	push	r0
+ 976:	11 24       	eor	r1, r1
+ 978:	2f 93       	push	r18
+ 97a:	3f 93       	push	r19
+ 97c:	4f 93       	push	r20
+ 97e:	5f 93       	push	r21
+ 980:	6f 93       	push	r22
+ 982:	7f 93       	push	r23
+ 984:	8f 93       	push	r24
+ 986:	9f 93       	push	r25
+ 988:	af 93       	push	r26
+ 98a:	bf 93       	push	r27
+ 98c:	ef 93       	push	r30
+ 98e:	ff 93       	push	r31
+	if (UssEdgeCount)		
+ 990:	80 91 82 01 	lds	r24, 0x0182
+ 994:	88 23       	and	r24, r24
+ 996:	f9 f0       	breq	.+62     	; 0x9d6 <__vector_1+0x68>
+	{
+		Stop_Timer1();
+ 998:	0e 94 b1 04 	call	0x962	; 0x962 <Stop_Timer1>
+		UssPulseCount = TCNT1 + (timer1_ovf_count * 65536);		// Store the time duration of the echo pulse. 	
+ 99c:	80 91 83 01 	lds	r24, 0x0183
+ 9a0:	90 91 84 01 	lds	r25, 0x0184
+ 9a4:	e4 e8       	ldi	r30, 0x84	; 132
+ 9a6:	f0 e0       	ldi	r31, 0x00	; 0
+ 9a8:	80 81       	ld	r24, Z
+ 9aa:	91 81       	ldd	r25, Z+1	; 0x01
+ 9ac:	90 93 86 01 	sts	0x0186, r25
+ 9b0:	80 93 85 01 	sts	0x0185, r24
+		timer1_ovf_count = 0;
+ 9b4:	10 92 84 01 	sts	0x0184, r1
+ 9b8:	10 92 83 01 	sts	0x0183, r1
+		TCNT1 = 0;
+ 9bc:	11 82       	std	Z+1, r1	; 0x01
+ 9be:	10 82       	st	Z, r1
+		UssEdgeCount = 0;
+ 9c0:	10 92 82 01 	sts	0x0182, r1
+		EICRA |= (1 << ISC01) | (1 << ISC00);												// Rising edge will trigger the next interrupt
+ 9c4:	e9 e6       	ldi	r30, 0x69	; 105
+ 9c6:	f0 e0       	ldi	r31, 0x00	; 0
+ 9c8:	80 81       	ld	r24, Z
+ 9ca:	83 60       	ori	r24, 0x03	; 3
+ 9cc:	80 83       	st	Z, r24
+		TCCR0B |= (1 << CS00);					// Start the timer0 to wait for 1ms to trigger the USS	
+ 9ce:	85 b5       	in	r24, 0x25	; 37
+ 9d0:	81 60       	ori	r24, 0x01	; 1
+ 9d2:	85 bd       	out	0x25, r24	; 37
+ 9d4:	0d c0       	rjmp	.+26     	; 0x9f0 <__vector_1+0x82>
+	}
+	else 
+	{
+		Start_Timer1();
+ 9d6:	0e 94 ab 04 	call	0x956	; 0x956 <Start_Timer1>
+		UssEdgeCount = 1;
+ 9da:	81 e0       	ldi	r24, 0x01	; 1
+ 9dc:	80 93 82 01 	sts	0x0182, r24
+		EICRA &= ~(1 << ISC00);		EICRA |= (1 << ISC01);			// falling edge for INT0 enabled
+ 9e0:	e9 e6       	ldi	r30, 0x69	; 105
+ 9e2:	f0 e0       	ldi	r31, 0x00	; 0
+ 9e4:	80 81       	ld	r24, Z
+ 9e6:	8e 7f       	andi	r24, 0xFE	; 254
+ 9e8:	80 83       	st	Z, r24
+ 9ea:	80 81       	ld	r24, Z
+ 9ec:	82 60       	ori	r24, 0x02	; 2
+ 9ee:	80 83       	st	Z, r24
+	}
+}
+ 9f0:	ff 91       	pop	r31
+ 9f2:	ef 91       	pop	r30
+ 9f4:	bf 91       	pop	r27
+ 9f6:	af 91       	pop	r26
+ 9f8:	9f 91       	pop	r25
+ 9fa:	8f 91       	pop	r24
+ 9fc:	7f 91       	pop	r23
+ 9fe:	6f 91       	pop	r22
+ a00:	5f 91       	pop	r21
+ a02:	4f 91       	pop	r20
+ a04:	3f 91       	pop	r19
+ a06:	2f 91       	pop	r18
+ a08:	0f 90       	pop	r0
+ a0a:	0f be       	out	0x3f, r0	; 63
+ a0c:	0f 90       	pop	r0
+ a0e:	1f 90       	pop	r1
+ a10:	18 95       	reti
+
+00000a12 <Get_Pir_count>:
+	TCCR1B &= ~(1 << CS10);
+}
+
+uint8_t Get_Pir_count()
+{
+	return pir_trigger_count;
+ a12:	80 91 87 01 	lds	r24, 0x0187
+}
+ a16:	08 95       	ret
+
+00000a18 <Reset_Pir_count>:
+
+void Reset_Pir_count()
+{
+	pir_trigger_count = 0;
+ a18:	10 92 87 01 	sts	0x0187, r1
+ a1c:	08 95       	ret
+
+00000a1e <init_relay>:
+}
+
+void init_relay()
+{
+	DDRB |= (1 << DDB0);
+ a1e:	20 9a       	sbi	0x04, 0	; 4
+	PORTB &= ~(1 << PORTB0);
+ a20:	28 98       	cbi	0x05, 0	; 5
+ a22:	08 95       	ret
+
+00000a24 <__divmodhi4>:
+ a24:	97 fb       	bst	r25, 7
+ a26:	07 2e       	mov	r0, r23
+ a28:	16 f4       	brtc	.+4      	; 0xa2e <__divmodhi4+0xa>
+ a2a:	00 94       	com	r0
+ a2c:	07 d0       	rcall	.+14     	; 0xa3c <__divmodhi4_neg1>
+ a2e:	77 fd       	sbrc	r23, 7
+ a30:	09 d0       	rcall	.+18     	; 0xa44 <__divmodhi4_neg2>
+ a32:	0e 94 35 05 	call	0xa6a	; 0xa6a <__udivmodhi4>
+ a36:	07 fc       	sbrc	r0, 7
+ a38:	05 d0       	rcall	.+10     	; 0xa44 <__divmodhi4_neg2>
+ a3a:	3e f4       	brtc	.+14     	; 0xa4a <__divmodhi4_exit>
+
+00000a3c <__divmodhi4_neg1>:
+ a3c:	90 95       	com	r25
+ a3e:	81 95       	neg	r24
+ a40:	9f 4f       	sbci	r25, 0xFF	; 255
+ a42:	08 95       	ret
+
+00000a44 <__divmodhi4_neg2>:
+ a44:	70 95       	com	r23
+ a46:	61 95       	neg	r22
+ a48:	7f 4f       	sbci	r23, 0xFF	; 255
+
+00000a4a <__divmodhi4_exit>:
+ a4a:	08 95       	ret
+
+00000a4c <__umulhisi3>:
+ a4c:	a2 9f       	mul	r26, r18
+ a4e:	b0 01       	movw	r22, r0
+ a50:	b3 9f       	mul	r27, r19
+ a52:	c0 01       	movw	r24, r0
+ a54:	a3 9f       	mul	r26, r19
+ a56:	70 0d       	add	r23, r0
+ a58:	81 1d       	adc	r24, r1
+ a5a:	11 24       	eor	r1, r1
+ a5c:	91 1d       	adc	r25, r1
+ a5e:	b2 9f       	mul	r27, r18
+ a60:	70 0d       	add	r23, r0
+ a62:	81 1d       	adc	r24, r1
+ a64:	11 24       	eor	r1, r1
+ a66:	91 1d       	adc	r25, r1
+ a68:	08 95       	ret
+
+00000a6a <__udivmodhi4>:
+ a6a:	aa 1b       	sub	r26, r26
+ a6c:	bb 1b       	sub	r27, r27
+ a6e:	51 e1       	ldi	r21, 0x11	; 17
+ a70:	07 c0       	rjmp	.+14     	; 0xa80 <__udivmodhi4_ep>
+
+00000a72 <__udivmodhi4_loop>:
+ a72:	aa 1f       	adc	r26, r26
+ a74:	bb 1f       	adc	r27, r27
+ a76:	a6 17       	cp	r26, r22
+ a78:	b7 07       	cpc	r27, r23
+ a7a:	10 f0       	brcs	.+4      	; 0xa80 <__udivmodhi4_ep>
+ a7c:	a6 1b       	sub	r26, r22
+ a7e:	b7 0b       	sbc	r27, r23
+
+00000a80 <__udivmodhi4_ep>:
+ a80:	88 1f       	adc	r24, r24
+ a82:	99 1f       	adc	r25, r25
+ a84:	5a 95       	dec	r21
+ a86:	a9 f7       	brne	.-22     	; 0xa72 <__udivmodhi4_loop>
+ a88:	80 95       	com	r24
+ a8a:	90 95       	com	r25
+ a8c:	bc 01       	movw	r22, r24
+ a8e:	cd 01       	movw	r24, r26
+ a90:	08 95       	ret
+
+00000a92 <_exit>:
+ a92:	f8 94       	cli
+
+00000a94 <__stop_program>:
+ a94:	ff cf       	rjmp	.-2      	; 0xa94 <__stop_program>
